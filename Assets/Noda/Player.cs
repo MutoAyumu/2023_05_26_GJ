@@ -18,9 +18,9 @@ public class Player : MonoBehaviour
             Vector2 vec = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit2D = Physics2D.Raycast(Camera.main.transform.position, vec);
             Debug.DrawRay(Camera.main.transform.position, vec);
-            if (hit2D)
+            if (hit2D && hit2D.collider.gameObject.TryGetComponent(out Target target ))
             {
-                Debug.Log($"{hit2D.collider.gameObject.name}");
+                target.OnHit();
             }
             _audio.Play();
         }
