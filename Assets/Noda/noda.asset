@@ -12,7 +12,131 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4004d5b6803fa9a4788002cc9cc01e33, type: 3}
   m_Name: noda
   m_EditorClassIdentifier: 
-  TargetPrefab: {fileID: 0}
+  TargetPrefab: {fileID: 735143453555323271, guid: 71196f4f6ff1855469c7f710cc4daa58, type: 3}
   GameTime: 60
-  TargetDataArray: []
-  Sprites: []
+  TargetDataArray:
+  - Array:
+    - TargetType: 0
+      Value: 2
+      Interval: 1.5
+  - Array:
+    - TargetType: 1
+      Value: 2
+      Interval: 0.5
+  - Array:
+    - TargetType: 2
+      Value: 0.5
+      Interval: 0.5
+  - Array:
+    - TargetType: 3
+      Value: 2
+      Interval: 0.5
+  - Array:
+    - TargetType: 0
+      Value: 2
+      Interval: 0.5
+  - Array:
+    - TargetType: 1
+      Value: 5
+      Interval: 0.5
+  - Array:
+    - TargetType: 3
+      Value: 0.5
+      Interval: 0.5
+  - Array:
+    - TargetType: 3
+      Value: 2
+      Interval: 0.5
+  - Array:
+    - TargetType: 2
+      Value: 2
+      Interval: 0.5
+  - Array:
+    - TargetType: 0
+      Value: 2
+      Interval: 0.5
+  - Array:
+    - TargetType: 1
+      Value: 5
+      Interval: 0.5
+  - Array:
+    - TargetType: 0
+      Value: 5
+      Interval: 0.5
+  - Array:
+    - TargetType: 0
+      Value: 2
+      Interval: 0.5
+  - Array:
+    - TargetType: 2
+      Value: 0.5
+      Interval: 0.5
+  - Array:
+    - TargetType: 0
+      Value: 5
+      Interval: 0.5
+  - Array:
+    - TargetType: 1
+      Value: 5
+      Interval: 0.5
+  - Array:
+    - TargetType: 0
+      Value: 2
+      Interval: 0.5
+  - Array:
+    - TargetType: 2
+      Value: 5
+      Interval: 0.5
+  - Array:
+    - TargetType: 3
+      Value: 5
+      Interval: 0.5
+  - Array:
+    - TargetType: 2
+      Value: 5
+      Interval: 0.5
+  - Array:
+    - TargetType: 1
+      Value: 5
+      Interval: 0.5
+  - Array:
+    - TargetType: 3
+      Value: 5
+      Interval: 0.5
+  - Array:
+    - TargetType: 0
+      Value: 10
+      Interval: 0.5
+  - Array:
+    - TargetType: 0
+      Value: 10
+      Interval: 0.5
+  - Array:
+    - TargetType: 1
+      Value: 10
+      Interval: 0.5
+  - Array:
+    - TargetType: 2
+      Value: 0.5
+      Interval: 0.5
+  - Array:
+    - TargetType: 0
+      Value: 10
+      Interval: 0.5
+  - Array:
+    - TargetType: 2
+      Value: 0.5
+      Interval: 0.5
+  - Array:
+    - TargetType: 0
+      Value: 2
+      Interval: 0.5
+  - Array:
+    - TargetType: 1
+      Value: 10
+      Interval: 0.5
+  Sprites:
+  - {fileID: 7482667652216324306, guid: 07f12b42792caae46bec63d3646237fa, type: 3}
+  - {fileID: 7482667652216324306, guid: 07f12b42792caae46bec63d3646237fa, type: 3}
+  - {fileID: 7482667652216324306, guid: 07f12b42792caae46bec63d3646237fa, type: 3}
+  - {fileID: 7482667652216324306, guid: 07f12b42792caae46bec63d3646237fa, type: 3}
