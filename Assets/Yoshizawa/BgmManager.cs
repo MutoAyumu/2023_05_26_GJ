@@ -8,7 +8,6 @@ public class BgmManager : MonoBehaviour
 {
     [SerializeField] private int _pitchChangeTime = 1;
     [SerializeField, Range(0f, 3f)] private float _changePitch = 1f;
-    [SerializeField, Range(0f, 60f)] private float _testTimer = 0;
     private float _sevePitch = 0f;
     private AudioSource _audio = null;
 
@@ -21,7 +20,7 @@ public class BgmManager : MonoBehaviour
 
     private void Update()
     {
-        if (_testTimer < _pitchChangeTime)
+        if (GameManager.Instance.GameTime < _pitchChangeTime)
         {
             _audio.pitch = _changePitch;
         }
