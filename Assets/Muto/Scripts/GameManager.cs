@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class GameManager : MonoBehaviour
     bool[] _generateFlag;
     GameData _gameData;
     int _currentIndex;
+    Text _scoreText;
+    Text _gameTimeText;
 
     enum LifeState
     {
@@ -36,10 +39,16 @@ public class GameManager : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+    private void Start()
+    {
+        OnGameStart();
+    }
     public void OnInit(GameManagerAttachment attachment)
     {
         _gameData = attachment.GameData;
         _gameTime = _gameData.GameTime;
+        _gameTimeText = attachment.GameTimeText;
+        _scoreText = attachment.ScoreText;
         _score = 0;
         _generatePositions = attachment.GeneratePositions;
         _generateFlag = new bool[_generatePositions.Length];
@@ -51,7 +60,7 @@ public class GameManager : MonoBehaviour
     }
     private void Update()
     {
-        if (_lifeState == LifeState.Stop) return;
+        //if (_lifeState == LifeState.Stop) return;
 
         _gameTime -= Time.deltaTime;
 
@@ -60,6 +69,8 @@ public class GameManager : MonoBehaviour
             _lifeState = LifeState.Stop;
             _gameTime = 0;
         }
+
+        _gameTimeText.text = _gameTime.ToString("00");
     }
     /// <summary>
     /// –„‚Ü‚Á‚Ä‚¢‚È‚¢ƒ}ƒX‚ð•Ô‚·
