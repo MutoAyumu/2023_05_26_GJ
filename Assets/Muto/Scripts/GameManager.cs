@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     bool[] _generateFrag;
     GameData _gameData;
 
+    public int Score => _score;
+
     enum LifeState
     {
         Stop,
@@ -74,6 +76,10 @@ public class GameManager : MonoBehaviour
         ret = _generatePositions[random];
 
         return ret;
+    }
+    public void ClearPosition(int index)
+    {
+        _generateFrag[index] = false;
     }
     public void AddScore(int score)
     {

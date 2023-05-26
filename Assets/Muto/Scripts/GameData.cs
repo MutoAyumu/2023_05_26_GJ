@@ -8,6 +8,7 @@ public class GameData : ScriptableObject
 {
     public float GameTime = 60f;
     public TargetData[] TargetDataArray;
+    public float Interval = 5f;
 }
 public enum TargetType
 {
