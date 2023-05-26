@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     static GameManager instance;
     public static GameManager Instance => instance;
 
+    public int Score { get => _score; set => _score = value; }
+
     float _gameTime;
     int _score;
     LifeState _lifeState;
@@ -75,8 +77,8 @@ public class GameManager : MonoBehaviour
 
         return ret;
     }
-    public void AddScore(int score)
+    public void ClearPosition(int index)
     {
-        _score += score;
+        _generateFrag[index] = false;
     }
 }
