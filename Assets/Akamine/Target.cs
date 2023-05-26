@@ -5,21 +5,13 @@ using UnityEngine.UI;
 
 public class Target : MonoBehaviour
 {
-    [SerializeField] SpriteRenderer _sprite;
+    [SerializeField] Text _text;
     [SerializeField] ParticleSystem _particleSystem;
     TargetData _data;
     int _index;
 
     float _timer;
     float _interval = 1;
-
-    private void Awake()
-    {
-        if (_sprite == null)
-        {
-            _sprite = GetComponent<SpriteRenderer>();
-        }
-    }
 
     private void Update()
     {
@@ -38,15 +30,15 @@ public class Target : MonoBehaviour
         _index = index;
         _interval = data.Interval;
 
-        _sprite.sprite = sprite;
+        _text.text = SetText(_data);
     }
     public void OnHit()
     {
         GameManager.Instance.Score = Test(_data);
         GameManager.Instance.ClearPosition(_index);
 
-        var particle = Instantiate(_particleSystem, this.transform.position, Quaternion.identity);
-        Destroy(particle, 1);
+        //var particle = Instantiate(_particleSystem, this.transform.position, Quaternion.identity);
+        //Destroy(particle, 1);
         Destroy(this.gameObject);
     }
     float Test(TargetData data)
@@ -68,6 +60,29 @@ public class Target : MonoBehaviour
         else if (data.TargetType == TargetType.Divide)
         {
             ret /= data.Value;
+        }
+
+        return ret;
+    }
+    string SetText(TargetData data)
+    {
+        var ret = "";
+
+        if (data.TargetType == TargetType.Add)
+        {
+            ret = $"Å{{data.Value}";
+        }
+        else if (data.TargetType == TargetType.Subtract)
+        {
+            ret = $"Å|{data.Value}";
+        }
+        else if (data.TargetType == TargetType.Multiply)
+        {
+            ret = $"Å~{data.Value}";
+        }
+        else if (data.TargetType == TargetType.Divide)
+        {
+            ret = $"ÅÄ{data.Value}";
         }
 
         return ret;

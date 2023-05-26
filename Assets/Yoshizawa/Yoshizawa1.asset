@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Yoshizawa1
   m_EditorClassIdentifier: 
   TargetPrefab: {fileID: 0}
-  GameTime: 60
+  GameTime: 30
   TargetDataArray: []
   Sprites: []
