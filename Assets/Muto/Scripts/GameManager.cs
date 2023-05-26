@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     Transform[] _generatePositions;
     bool[] _generateFrag;
     GameData _gameData;
+    int _currentIndex;
 
     enum LifeState
     {
@@ -63,17 +64,27 @@ public class GameManager : MonoBehaviour
     /// –„‚Ü‚Á‚Ä‚¢‚È‚¢ƒ}ƒX‚ð•Ô‚·
     /// </summary>
     /// <returns></returns>
-    public Transform GetPosition()
+    Transform GetPosition(int random)
     {
-        var random = Random.Range(0, _generateFrag.Length);
         Transform ret = null;
 
         if(_generateFrag[random])
         {
-            ret = GetPosition();
+            ret = GetPosition(random);
         }
 
         ret = _generatePositions[random];
+        _generateFrag[random] = true;
+
+        return ret;
+    }
+    public Target GetObject()
+    {
+        var random = Random.Range(0, _generateFrag.Length);
+        var t = GetPosition(random);
+        var ret = Instantiate(_gameData.TargetPrefab, t.position, Quaternion.identity);
+
+        ret.OnInit(_gameData.TargetDataArray[_currentIndex], random);
 
         return ret;
     }

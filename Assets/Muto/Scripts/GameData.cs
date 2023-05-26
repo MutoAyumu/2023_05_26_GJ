@@ -6,6 +6,7 @@ using System;
 [CreateAssetMenu(fileName = "NewData", menuName = "CreateGameData")]
 public class GameData : ScriptableObject
 {
+    public Target TargetPrefab;
     public float GameTime = 60f;
     public TargetData[] TargetDataArray;
     public float Interval = 5f;
