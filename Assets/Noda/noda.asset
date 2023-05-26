@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: noda
   m_EditorClassIdentifier: 
   TargetPrefab: {fileID: 735143453555323271, guid: 71196f4f6ff1855469c7f710cc4daa58, type: 3}
-  GameTime: 60
+  GameTime: 10
   TargetDataArray:
   - Array:
     - TargetType: 0

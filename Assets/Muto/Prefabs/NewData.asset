@@ -13,16 +13,23 @@ MonoBehaviour:
   m_Name: NewData
   m_EditorClassIdentifier: 
   TargetPrefab: {fileID: 735143453555323271, guid: 71196f4f6ff1855469c7f710cc4daa58, type: 3}
-  GameTime: 60
+  GameTime: 10
   TargetDataArray:
   - Array:
-    - TargetType: 2
-      Value: 4
-      Interval: 1
+    - TargetType: 0
+      Value: 5
+      Interval: 5
+    - TargetType: 0
+      Value: 5
+      Interval: 5
   - Array:
-    - TargetType: 3
-      Value: 0
-      Interval: 1
+    - TargetType: 0
+      Value: 5
+      Interval: 5
+  - Array:
+    - TargetType: 0
+      Value: 5
+      Interval: 5
   Sprites:
   - {fileID: 21300000, guid: 15b1d39ac42ce4674bd63f86f9a0c5df, type: 3}
   - {fileID: 21300000, guid: 0ac55f9f886d827408c102bdf33c5ff7, type: 3}

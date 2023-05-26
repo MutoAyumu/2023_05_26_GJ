@@ -5,10 +5,20 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] Sprite[] _countDownSprites;
+
     static GameManager instance;
     public static GameManager Instance => instance;
 
-    public float Score { get => _score; set => _score = value; }
+    public float Score
+    {
+        get => _score;
+        set
+        {
+            _score = value;
+            _scoreText.text = _score.ToString("000000000");
+        }
+    }
     public float GameTime => _gameTime;
 
     float _gameTime;
@@ -20,6 +30,7 @@ public class GameManager : MonoBehaviour
     int _currentIndex;
     Text _scoreText;
     Text _gameTimeText;
+    GameObject _gameOverPanel;
 
     enum LifeState
     {
@@ -41,7 +52,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        OnGameStart();
+        //OnGameStart();
     }
     public void OnInit(GameManagerAttachment attachment)
     {
@@ -49,6 +60,7 @@ public class GameManager : MonoBehaviour
         _gameTime = _gameData.GameTime;
         _gameTimeText = attachment.GameTimeText;
         _scoreText = attachment.ScoreText;
+        _gameOverPanel = attachment.GameOverPanel;
         _score = 0;
         _generatePositions = attachment.GeneratePositions;
         _generateFlag = new bool[_generatePositions.Length];
@@ -62,12 +74,15 @@ public class GameManager : MonoBehaviour
     {
         //if (_lifeState == LifeState.Stop) return;
 
+        if (_gameTime == 0) return;
+
         _gameTime -= Time.deltaTime;
 
         if (_gameTime <= 0)
         {
-            _lifeState = LifeState.Stop;
+            //_lifeState = LifeState.Stop;
             _gameTime = 0;
+            _gameOverPanel.SetActive(true);
         }
 
         _gameTimeText.text = _gameTime.ToString("00");
