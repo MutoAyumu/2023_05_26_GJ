@@ -8,11 +8,11 @@ public class GameManager : MonoBehaviour
     static GameManager instance;
     public static GameManager Instance => instance;
 
-    public int Score { get => _score; set => _score = value; }
+    public float Score { get => _score; set => _score = value; }
     public float GameTime => _gameTime;
 
     float _gameTime;
-    int _score;
+    float _score;
     LifeState _lifeState;
     Transform[] _generatePositions;
     bool[] _generateFlag;

@@ -49,7 +49,7 @@ public class Target : MonoBehaviour
         Destroy(particle, 1);
         Destroy(this.gameObject);
     }
-    int Test(TargetData data)
+    float Test(TargetData data)
     {
         var ret = GameManager.Instance.Score;
 
