@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class GameManagerAttachment : MonoBehaviour
 {
-    [SerializeField] GameData _gameData;
+    [SerializeField] GameData[] _gameData;
     [SerializeField] Transform[] _generatePositions;
 
-    public GameData GameData => _gameData;
     public Transform[] GeneratePositions => _generatePositions;
+
+    public GameData GameData 
+    { 
+        get
+        {
+            var r = Random.Range(0, _gameData.Length);
+            return _gameData[r];
+        }
+    }
 
     private void Start()
     {
