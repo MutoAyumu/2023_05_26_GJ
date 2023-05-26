@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
+using TMPro;
 using UnityEngine;
 
 public class Generator : MonoBehaviour
 {
-    [SerializeField] GameObject[] _go;
     [SerializeField] float _interval = 1f;
     float _timer = 0f;
 
@@ -15,8 +15,8 @@ public class Generator : MonoBehaviour
 
         if (_timer > _interval)
         {
-            int n = Random.Range(0, _go.Length);
-            Instantiate(_go[n],GameManager.Instance.GetPosition()) ;
+            var go = GameManager.Instance.GetObject();
+            go.transform.SetParent(this.transform);
 
             _timer = 0f;
         }
