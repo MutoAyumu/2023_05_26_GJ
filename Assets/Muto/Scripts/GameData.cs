@@ -27,6 +27,6 @@ public class TargetDataArray
 public class TargetData
 {
     public TargetType TargetType = TargetType.Add;
-    public int Value = 1;
+    public float Value = 1;
     public float Interval = 1f;
 }
