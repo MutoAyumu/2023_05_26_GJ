@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Target : MonoBehaviour
 {
     [SerializeField] SpriteRenderer _sprite;
+    [SerializeField] ParticleSystem _particleSystem;
     TargetData _data;
     int _index;
 
@@ -14,7 +15,7 @@ public class Target : MonoBehaviour
 
     private void Awake()
     {
-        if( _sprite == null )
+        if (_sprite == null)
         {
             _sprite = GetComponent<SpriteRenderer>();
         }
@@ -24,7 +25,7 @@ public class Target : MonoBehaviour
     {
         _timer += Time.deltaTime;
 
-        if(_timer >= _interval)
+        if (_timer >= _interval)
         {
             Destroy(gameObject);
             GameManager.Instance.ClearPosition(_index);
@@ -44,21 +45,23 @@ public class Target : MonoBehaviour
         GameManager.Instance.Score = Test(_data);
         GameManager.Instance.ClearPosition(_index);
 
+        var particle = Instantiate(_particleSystem, this.transform.position, Quaternion.identity);
+        Destroy(particle, 1);
         Destroy(this.gameObject);
     }
     int Test(TargetData data)
     {
         var ret = GameManager.Instance.Score;
 
-        if(data.TargetType == TargetType.Add)
+        if (data.TargetType == TargetType.Add)
         {
             ret += data.Value;
         }
-        else if(data.TargetType == TargetType.Subtract)
+        else if (data.TargetType == TargetType.Subtract)
         {
             ret -= data.Value;
         }
-        else if(data.TargetType == TargetType.Multiply)
+        else if (data.TargetType == TargetType.Multiply)
         {
             ret *= data.Value;
         }
