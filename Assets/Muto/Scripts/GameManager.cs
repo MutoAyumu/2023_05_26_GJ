@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     LifeState _lifeState;
     Transform[] _generatePositions;
     bool[] _generateFrag;
+    GameData _gameData;
 
     enum LifeState
     {
@@ -33,7 +34,8 @@ public class GameManager : MonoBehaviour
     }
     public void OnInit(GameManagerAttachment attachment)
     {
-        _gameTime = attachment.GameTime;
+        _gameData = attachment.GameData;
+        _gameTime = _gameData.GameTime;
         _score = 0;
         _generatePositions = attachment.GeneratePositions;
         _generateFrag = new bool[_generatePositions.Length];

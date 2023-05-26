@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class GameManagerAttachment : MonoBehaviour
 {
-    [SerializeField] float _gameTime = 60f;
+    [SerializeField] GameData _gameData;
     [SerializeField] Transform[] _generatePositions;
 
-    public float GameTime => _gameTime;
+    public GameData GameData => _gameData;
     public Transform[] GeneratePositions => _generatePositions;
 
     private void Start()
