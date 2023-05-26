@@ -8,8 +8,8 @@ public class GameData : ScriptableObject
 {
     public Target TargetPrefab;
     public float GameTime = 60f;
-    public TargetData[] TargetDataArray;
-    public float Interval = 5f;
+    public TargetDataArray[] TargetDataArray;
+    public Sprite[] Sprites;
 }
 public enum TargetType
 {
@@ -19,8 +19,14 @@ public enum TargetType
     Divide = 3,
 }
 [Serializable]
+public class TargetDataArray
+{
+    public TargetData[] Array;
+}
+[Serializable]
 public class TargetData
 {
     public TargetType TargetType = TargetType.Add;
     public int Value = 1;
+    public float Interval = 1f;
 }

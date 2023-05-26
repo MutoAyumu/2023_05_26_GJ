@@ -8,12 +8,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance => instance;
 
     public int Score { get => _score; set => _score = value; }
+    public float GameTime => _gameTime;
 
     float _gameTime;
     int _score;
     LifeState _lifeState;
     Transform[] _generatePositions;
-    bool[] _generateFrag;
+    bool[] _generateFlag;
     GameData _gameData;
     int _currentIndex;
 
@@ -25,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
@@ -41,7 +42,7 @@ public class GameManager : MonoBehaviour
         _gameTime = _gameData.GameTime;
         _score = 0;
         _generatePositions = attachment.GeneratePositions;
-        _generateFrag = new bool[_generatePositions.Length];
+        _generateFlag = new bool[_generatePositions.Length];
         _lifeState = LifeState.Stop;
     }
     public void OnGameStart()
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviour
 
         _gameTime -= Time.deltaTime;
 
-        if(_gameTime <= 0)
+        if (_gameTime <= 0)
         {
             _lifeState = LifeState.Stop;
             _gameTime = 0;
@@ -64,32 +65,68 @@ public class GameManager : MonoBehaviour
     /// –„‚Ü‚Á‚Ä‚¢‚È‚¢ƒ}ƒX‚ð•Ô‚·
     /// </summary>
     /// <returns></returns>
-    Transform GetPosition(int random)
+    Transform? GetPosition(int random)
     {
         Transform ret = null;
 
-        if(_generateFrag[random])
+        if (_generateFlag[random])
         {
-            ret = GetPosition(random);
+            var count = 0;
+
+            for (int i = 0; i < _generateFlag.Length; i++)
+            {
+                if (_generateFlag[i])
+                {
+                    count++;
+                }
+            }
+
+            if (count >= _generateFlag.Length)
+            {
+                return null;
+            }
+
+            var r = Random.Range(0, _generateFlag.Length);
+            ret = GetPosition(r);
         }
 
         ret = _generatePositions[random];
-        _generateFrag[random] = true;
+        _generateFlag[random] = true;
 
         return ret;
     }
-    public Target GetObject()
+    public Target[] GetObject()
     {
-        var random = Random.Range(0, _generateFrag.Length);
-        var t = GetPosition(random);
-        var ret = Instantiate(_gameData.TargetPrefab, t.position, Quaternion.identity);
+        if (_currentIndex >= _gameData.TargetDataArray.Length)
+        {
+            return null;
+        }
 
-        ret.OnInit(_gameData.TargetDataArray[_currentIndex], random);
+        var array = _gameData.TargetDataArray[_currentIndex];
+        Target[] ret = new Target[array.Array.Length];
+
+        for (int i = 0; i < array.Array.Length; i++)
+        {
+            var random = Random.Range(0, _generateFlag.Length);
+            var t = GetPosition(random);
+
+            if (t == null)
+            {
+                return null;
+            }
+
+            ret[i] = Instantiate(_gameData.TargetPrefab, t.position, Quaternion.identity);
+
+            var data = array.Array[i];
+            ret[i].OnInit(data, random, _gameData.Sprites[(int)data.TargetType]);
+        }
+
+        _currentIndex++;
 
         return ret;
     }
     public void ClearPosition(int index)
     {
-        _generateFrag[index] = false;
+        _generateFlag[index] = false;
     }
 }

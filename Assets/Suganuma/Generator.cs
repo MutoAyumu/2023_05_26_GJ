@@ -16,7 +16,19 @@ public class Generator : MonoBehaviour
         if (_timer > _interval)
         {
             var go = GameManager.Instance.GetObject();
-            go.transform.SetParent(this.transform);
+
+            if (go != null)
+            {
+                if (go.Length > 0)
+                {
+                    for (int i = 0; i < go.Length; i++)
+                    {
+                        if (go[i] == null) return;
+
+                        go[i].transform.SetParent(this.transform);
+                    }
+                }
+            }
 
             _timer = 0f;
         }
