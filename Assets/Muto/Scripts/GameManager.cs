@@ -7,14 +7,14 @@ public class GameManager : MonoBehaviour
     static GameManager instance;
     public static GameManager Instance => instance;
 
+    public int Score { get => _score; set => _score = value; }
+
     float _gameTime;
     int _score;
     LifeState _lifeState;
     Transform[] _generatePositions;
     bool[] _generateFrag;
     GameData _gameData;
-
-    public int Score => _score;
 
     enum LifeState
     {
@@ -80,9 +80,5 @@ public class GameManager : MonoBehaviour
     public void ClearPosition(int index)
     {
         _generateFrag[index] = false;
-    }
-    public void AddScore(int score)
-    {
-        _score += score;
     }
 }
